@@ -1,98 +1,106 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Notepad API (Backend)
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Este é o repositório para a API RESTful da aplicação **Notepad**. O servidor foi desenvolvido com [Nest.js](https://nestjs.com/), um framework Node.js progressivo para construir aplicações eficientes e escaláveis. A comunicação com o banco de dados é gerenciada pelo ORM [Prisma](https://www.prisma.io/).
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## ▶️ Como Rodar a Aplicação
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Siga os passos abaixo para configurar e rodar o projeto em seu ambiente de desenvolvimento local.
 
-## Project setup
+### Pré-requisitos
 
-```bash
-$ npm install
+Antes de começar, certifique-se de que você tem os seguintes softwares instalados na sua máquina:
+* [Node.js](https://nodejs.org/en/) (versão 18.x ou superior)
+* [NPM](https://www.npmjs.com/) ou [Yarn](https://yarnpkg.com/)
+
+> **Nota:** Este projeto utiliza **SQLite** como banco de dados, então você **não precisa** instalar um servidor de banco de dados separado (como PostgreSQL ou MySQL) para rodar em modo de desenvolvimento.
+
+### Passo a Passo
+
+1.  **Clone o repositório:**
+    ```bash
+    git clone [https://github.com/FernandoCoff/notepad_api_nest.git](https://github.com/FernandoCoff/notepad_api_nest.git)
+    ```
+
+2.  **Navegue até o diretório do projeto:**
+    ```bash
+    cd notepad_api_nest
+    ```
+
+3.  **Instale as dependências:**
+    * Usando NPM:
+        ```bash
+        npm install
+        ```
+    * Ou usando Yarn:
+        ```bash
+        yarn install
+        ```
+
+4.  **Configure as variáveis de ambiente:**
+    Crie um arquivo chamado `.env` na raiz do projeto. Este arquivo é necessário para definir a URL de conexão com o banco de dados. Veja a seção **Variáveis de Ambiente** abaixo para mais detalhes.
+
+5.  **Execute as migrações do banco de dados:**
+    Este comando irá ler o seu schema do Prisma, criar o arquivo de banco de dados SQLite e preparar as tabelas necessárias.
+    ```bash
+    npx prisma migrate dev
+    ```
+
+6.  **Inicie o servidor:**
+    * Usando NPM:
+        ```bash
+        npm run start:dev
+        ```
+    * Ou usando Yarn:
+        ```bash
+        yarn start:dev
+        ```
+    
+O servidor estará em execução. Por padrão, ele rodará em [http://localhost:3333](http://localhost:3333).
+
+---
+
+## ⚙️ Variáveis de Ambiente (.env)
+
+A configuração do banco de dados e da porta do servidor é feita através de um arquivo `.env`. Crie este arquivo na raiz do projeto com o seguinte conteúdo:
+
+```env
+# URL de conexão com o banco de dados.
+# Para SQLite, aponta para um arquivo que será criado na pasta /prisma.
+DATABASE_URL="file:./prisma/dev.db"
+
+# Porta em que o servidor irá rodar.
+# Este campo é OPCIONAL. Se não for definido, o servidor usará a porta 3333 como padrão.
+PORT=3333
 ```
 
-## Compile and run the project
+---
 
-```bash
-# development
-$ npm run start
+## 🛠️ Tecnologias Utilizadas
 
-# watch mode
-$ npm run start:dev
+* **[Nest.js](https://nestjs.com/)**: Framework backend para Node.js.
+* **[TypeScript](https://www.typescriptlang.org/)**: Superset do JavaScript que adiciona tipagem estática.
+* **[Prisma](https://www.prisma.io/)**: ORM de próxima geração para Node.js e TypeScript.
+* **[SQLite](https://www.sqlite.org/index.html)**: Banco de dados relacional embarcado.
 
-# production mode
-$ npm run start:prod
-```
+---
 
-## Run tests
+## ↔️ Endpoints da API
 
-```bash
-# unit tests
-$ npm run test
+A API fornece os seguintes endpoints para o gerenciamento de notas:
 
-# e2e tests
-$ npm run test:e2e
+| Método HTTP | Endpoint      | Descrição                 |
+| :---------- | :------------ | :------------------------ |
+| `GET`       | `/notes`      | Lista todas as notas.     |
+| `POST`      | `/notes`      | Cria uma nova nota.       |
+| `PATCH`     | `/notes/:id`  | Atualiza uma nota existente. |
+| `DELETE`    | `/notes/:id`  | Deleta uma nota.          |
 
-# test coverage
-$ npm run test:cov
-```
+---
 
-## Deployment
+## 📜 Scripts Disponíveis
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+* `npm run start:dev`: Inicia a aplicação em modo de desenvolvimento com hot-reload.
+* `npm run build`: Compila o código TypeScript para JavaScript.
+* `npm run start:prod`: Inicia a aplicação em modo de produção (requer `build` prévio).
